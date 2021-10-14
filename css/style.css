@@ -51,9 +51,17 @@
 }
 
 .win { 
-  box-shadow: 0px 0px 5px 4px greenyellow;
+  box-shadow: 0px 0px 5px 2px lawngreen;
 }
 
 .loss {
-  box-shadow: 0px 0px 5px 4px rebeccapurple;
+  box-shadow: 0px 0px 5px 2px lightcoral;
+}
+
+.draw { 
+  box-shadow: 0px 0px 5px 2px darkcyan;
+}
+
+.text-hidden { 
+  visibility: hidden;
 }
