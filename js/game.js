@@ -1,29 +1,34 @@
-function computerPlay() {
-  options = ["Rock", "Paper", "Scissors"];
-  optLength = options.length;
-  randomOption = Math.floor(optLength * Math.random());
+const rock = document.getElementById("rock");
+const paper = document.getElementById("paper");
+const scissors = document.getElementById("scissors");
+const optionElementMap = { rock, paper, scissors };
 
-  return options[randomOption];
+function computerPlay() {
+  // This function returns the computer's chosen option
+  const options = Object.keys(optionElementMap);
+  let optLength = options.length();
+  randomOption = Math.floor(optLength * Math.random());
+  return optionElementMap[options[randomOption]];
+}
+
+function playerPlay(target) {
+  // This function returns the option clicked by the player
+  let optionName = target.id;
+  return optionElementMap(optionName);
 }
 
 function playRound(playerSelection, computerSelection) {
-  lossText = `You lose. ${computerSelection} beats ${playerSelection}.`;
-  victoryText = `You win. ${playerSelection} beats ${computerSelection}.`;
-  drawText = `It's a draw! Both players chose ${playerSelection}`
-
-  playerSelection = playerSelection.toLowerCase();
-  computerSelection = computerSelection.toLowerCase();
-
+  // Returns the outcome of a round.
   if (playerSelection === "rock") {
     switch (computerSelection) {
-      case "paper":
-        result = lossText;
+      case paper:
+        result = "computer";
         break;
-      case "scissors":
-        result = victoryText;
+      case scissors:
+        result = "player";
         break;
-      case 'rock':
-        result = drawText;
+      case rock:
+        result = "draw";
         break;
     }
   }
@@ -31,13 +36,13 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === "paper") {
     switch (computerSelection) {
       case "scissors":
-        result = lossText;
+        result = "computer";
         break;
       case "rock":
-        result = victoryText;
+        result = "player";
         break;
-      case 'paper':
-        result = drawText;
+      case "paper":
+        result = "draw";
         break;
     }
   }
@@ -45,37 +50,38 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection === "scissors") {
     switch (computerSelection) {
       case "rock":
-        result = lossText;
+        result = "computer";
         break;
       case "paper":
-        result = victoryText;
+        result = "player";
         break;
-      case 'scissors':
-        result = drawText;
+      case "scissors":
+        result = "draw";
         break;
     }
   }
   return result;
 }
 
-function game() {
-  for (let i = 0; i < 5; i++) {
-    computerSelection = computerPlay();
-    playerSelection = userInput();
+function buttonListener(e) {
+  cleanResult();
+  computerSelection = computerPlay();
+  playerSelection = playerPlay(e.target);
 
-    result = playRound(playerSelection, computerSelection);
-    outputResult(result);
-  }
+  result = playRound(playerSelection, computerSelection);
+  outputResult(result);
 }
 
-function userInput() {
-  input = window.prompt('Please choose between Rock, Paper and Scissors')
-  return input;
+function addButtonListeners() {
+  buttons = document.querySelectorAll(".controls__button");
+  buttons.forEach((button) => button.addEventListener("click", buttonListener));
 }
 
-function outputResult(result) {
-  h1 = document.querySelector('h1');
-  h1.text = result;
+function outputResult(result) {}
+
+function cleanResult() {
+  resultField = document.querySelector(".result-bar__text");
+  resultField.textContent = "RESULT: ";
 }
 
-game();
+addButtonListeners();

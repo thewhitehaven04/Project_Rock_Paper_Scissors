@@ -1,22 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>
-            Rock, Paper, Scissors
-        </title>
-        <meta charset="utf-8">
-        <script src="js/game.js"></script>
-    </head>
-    <body>
-        <header>
-            <div class="tile">
-                <span class="title__text">
-                    Rock. Paper. Scissors.
-                </span>
-            </div>
-            <div>
-                <span class="title__caption">A classic</span>
-            </div>
-        </header>
-    </body>
+  <head>
+    <title>Rock, Paper, Scissors</title>
+    <meta charset="utf-8" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=PT+Sans"
+    />
+    <script src="js/game.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <span class="title__span"> ROCK. PAPER. SCISSORS. </span>
+      </div>
+    </header>
+    <div class="main">
+      <div class="controls">
+        <div class="controls__button" type="submit">
+          <img
+            class="controls__button__image"
+            src="img/RPS/Rock_2.png"
+            alt="Rock"
+            id="rock"
+          />
+        </div>
+
+        <div class="controls__button" type="submit">
+          <img
+            class="controls__button__image"
+            src="img/RPS/Paper_2.png"
+            alt="Paper"
+            id="paper"
+          />
+        </div>
+
+        <div class="controls__button" type="submit">
+          <img
+            class="controls__button__image"
+            src="img/RPS/Scissors_2.png"
+            alt="Scissors"
+            id="paper"
+          />
+        </div>
+      </div>
+      <footer>
+        <div class="result-bar">
+          <span class="result-bar__text"> RESULT: </span>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>

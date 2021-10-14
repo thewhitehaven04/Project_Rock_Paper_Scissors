@@ -1,0 +1,59 @@
+:root {
+  all: unset;
+  --default-background-color: rgb(252, 242, 240);
+}
+
+.title {
+  text-align: center;
+  margin: 40px auto;
+}
+
+.title__span {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-size: 36pt;
+}
+
+.controls {
+  display: flex;
+  flex: row nowrap;
+  justify-content: space-evenly;
+}
+
+.controls__button {
+  border: none;
+}
+
+.controls__button__image {
+  width: 200px;
+  height: auto;
+}
+
+.controls__button__image:hover {
+  box-shadow: 0px 0px 5px 4px rgb(210, 210, 210, 0.8);
+}
+
+.controls__button__image {
+  padding: 10px;
+  border-radius: 10px;
+  transition: box-shadow 0.23s ease-in-out;
+}
+
+.result-bar {
+  margin: 40px auto;
+  text-align: center;
+}
+
+.result-bar__text {
+  font-family: "PT Sans", sans-serif;
+  font-weight: 700;
+  font-size: 18pt;
+}
+
+.win { 
+  box-shadow: 0px 0px 5px 4px greenyellow;
+}
+
+.loss {
+  box-shadow: 0px 0px 5px 4px rebeccapurple;
+}
