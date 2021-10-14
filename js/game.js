@@ -1,12 +1,17 @@
 const rock = document.getElementById("rock");
 const paper = document.getElementById("paper");
 const scissors = document.getElementById("scissors");
+
+rock = { option: rock, winsAgainst: scissors, losesAgainst: paper };
+paper = { option: paper, winsAgainst: rock, losesAgainst: scissors };
+scissors = { option: scissors, winsAgainst: paper, losesAgainst: rock };
+
 const optionElementMap = { rock, paper, scissors };
 
 function computerPlay() {
   // This function returns the computer's chosen option
   const options = Object.keys(optionElementMap);
-  let optLength = options.length();
+  let optLength = options.length;
   randomOption = Math.floor(optLength * Math.random());
   return optionElementMap[options[randomOption]];
 }
@@ -14,7 +19,7 @@ function computerPlay() {
 function playerPlay(target) {
   // This function returns the option clicked by the player
   let optionName = target.id;
-  return optionElementMap(optionName);
+  return optionElementMap[optionName];
 }
 
 function playRound(playerSelection, computerSelection) {
