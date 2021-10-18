@@ -24,22 +24,21 @@ function playerPlay(target) {
 
 function playRound(playerSelection, computerSelection) {
   // Returns the outcome of a round.
-  let loser, winner;
-  let outcome = { loser: loser, winner: winner, draw: false };
+  let outcome = { draw: false };
 
-  if (playerSelection.winsAgainst === computerSelection) {
-    loser = computerSelection;
-    winner = playerSelection;
-  } else if (playerSelection.losesAgainst === computerSelection) {
-    loser = playerSelection;
-    winner = computerSelection;
-  } else {
-    outcome['draw'] = playerSelection;
-  }
+  if (playerSelection.winsAgainst.option === computerSelection.option) {
+    outcome["winner"] = playerSelection.option;
+    outcome["loser"] = computerSelection.option;
+  } else if (computerSelection.winsAgainst.option === playerSelection.option) {
+    outcome["winner"] = computerSelection.option;
+    outcome["loser"] = playerSelection.option;
+  } else outcome["draw"] = computerSelection.option;
+
   return outcome;
 }
 
 function addButtonListeners() {
+  // Sets up listeners that register player input
   buttons = document.querySelectorAll(".controls__button");
   buttons.forEach((button) =>
     button.addEventListener(
@@ -58,9 +57,14 @@ function addButtonListeners() {
 }
 
 function outputResult(result) {
-  if (result['loser']) result['loser']['option'].classList.add("loss");
-  if (result['winner']) result['winner']['option'].classList.add("win");
-  if (result['draw']) result['draw']['option'].classList.add("draw");
+  // Apply win- and loss-specific classes to elements
+  // that were chosen by either player or computer
+  if (result["loser"]) {
+    result["loser"].classList.add("loss");
+    result["winner"].classList.add("win");
+  } else {
+    result["draw"].classList.add("draw");
+  }
 }
 
 function cleanResult() {
