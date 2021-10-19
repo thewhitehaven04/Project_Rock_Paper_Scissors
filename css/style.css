@@ -1,17 +1,25 @@
 :root {
   all: unset;
-  --default-background-color: rgb(252, 242, 240);
+  font-family: "Dosis";
+  --font-color: #94A7B0; 
+  --default-background-color: #FAFAFA; 
+  background-color: #FAFAFA;
+  --border-radius-panels: 25px;
 }
 
 .title {
+  background-color: #546e7a;
+  border-radius: var(--border-radius-panels);
+  border-color: #E7E7E8;
+  border-style: solid ;
   text-align: center;
   margin: 40px auto;
 }
 
 .title__span {
-  font-family: "PT Sans", sans-serif;
   font-weight: 700;
-  font-size: 36pt;
+  font-size: 48pt;
+  color: var(--font-color);
 }
 
 .controls {
@@ -30,7 +38,7 @@
 }
 
 .controls__button__image:hover {
-  box-shadow: 0px 0px 5px 4px rgb(210, 210, 210, 0.8);
+  box-shadow: 0px 0px 5px 4px #E7E7E8;
 }
 
 .controls__button__image {
@@ -39,30 +47,33 @@
   transition: box-shadow 0.15s ease-in-out;
 }
 
+
 .result-bar {
+  border-radius: var(--border-radius-panels);
   margin: 40px auto;
   text-align: center;
-}
-
-.result-bar__text {
-  font-family: "PT Sans", sans-serif;
+  background-color: #546e7a;
   font-weight: 700;
-  font-size: 18pt;
+  font-size: 48pt;
+  color: var(--font-color);
 }
 
 .win { 
-  box-shadow: 0px 0px 5px 5px lawngreen;
+  box-shadow: 0px 0px 8px 3px #91b859;
 }
 
 .loss {
-  box-shadow: 0px 0px 5px 5px lightcoral;
+  box-shadow: 0px 0px 8px 3px #e53935;
 }
 
 .draw { 
-  box-shadow: 0px 0px 5px 5px darkcyan;
+  box-shadow: 0px 0px 8px 3px #7c4dff;
 }
 
 .text-hidden { 
   visibility: hidden;
 }
 
+.score__counter {
+  margin: 50px auto 50px;
+}

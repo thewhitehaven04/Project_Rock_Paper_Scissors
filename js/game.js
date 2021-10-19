@@ -11,7 +11,7 @@ const optionElementMap = { rock, paper, scissors };
 let playerCount = 0;
 let computerCount = 0;
 
-const exitThreshold = 10;
+const exitThreshold = 4;
 
 function addButtonListeners() {
   // Sets up listeners that register player input
@@ -109,7 +109,7 @@ function outputResult(result) {
 
   let addScore = function () {
     scoreCounter = document.getElementById("score");
-    scoreCounter.textContent = `${playerCount}:${computerCount}`;
+    scoreCounter.textContent = `PLAYER ${playerCount}:${computerCount} COMPUTER`;
   };
 
   applyClasses(result);
@@ -117,9 +117,6 @@ function outputResult(result) {
 }
 
 function cleanResult() {
-  resultField = document.querySelector(".result-bar__text");
-  resultField.textContent = "RESULT: ";
-
   const outcomeClasses = ["win", "loss", "draw"];
   outcomeClasses.forEach((outcomeClass) => {
     let outcomeClassElements = document.getElementsByClassName(outcomeClass);
