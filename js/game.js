@@ -8,6 +8,35 @@ Object.defineProperty(scissors, "winsAgainst", { value: paper });
 
 const optionElementMap = { rock, paper, scissors };
 
+let playerCount = 0;
+let computerCount = 0;
+
+const exitThreshold = 10;
+
+function addButtonListeners() {
+  // Sets up listeners that register player input
+  buttons = document.querySelectorAll(".controls__button");
+  buttons.forEach((button) =>
+    button.addEventListener("click", (e) => {
+      cleanResult();
+
+      computerSelection = computerPlay();
+      playerSelection = playerPlay(e.target);
+
+      result = playRound(playerSelection, computerSelection);
+      outputResult(result);
+    })
+  );
+}
+
+window.addEventListener("keypress", (e) => {
+  /* Adds listener that stops the application of the loss, 
+  draw and win classes to the computer's and player's options of choice */
+  if (e.Key === "Enter") {
+    cleanResult();
+  }
+});
+
 function computerPlay() {
   // This function returns the computer's chosen option
   const options = Object.keys(optionElementMap);
@@ -24,14 +53,18 @@ function playerPlay(target) {
 
 function playRound(playerSelection, computerSelection) {
   // Returns the outcome of a round.
-  let outcome = { draw: false };
+  let outcome = { draw: false, winner: undefined };
 
   if (playerSelection.winsAgainst.option === computerSelection.option) {
-    outcome["winner"] = playerSelection.option;
-    outcome["loser"] = computerSelection.option;
+    outcome["winnerElement"] = playerSelection.option;
+    outcome["loserElement"] = computerSelection.option;
+    outcome["winner"] = "player";
+    playerCount++;
   } else if (computerSelection.winsAgainst.option === playerSelection.option) {
-    outcome["winner"] = computerSelection.option;
-    outcome["loser"] = playerSelection.option;
+    outcome["winnerElement"] = computerSelection.option;
+    outcome["loserElement"] = playerSelection.option;
+    outcome["winner"] = "computer";
+    computerCount++;
   } else outcome["draw"] = computerSelection.option;
 
   return outcome;
@@ -41,41 +74,67 @@ function addButtonListeners() {
   // Sets up listeners that register player input
   buttons = document.querySelectorAll(".controls__button");
   buttons.forEach((button) =>
-    button.addEventListener(
-      "click",
-      (buttomImageListener = (e) => {
-        cleanResult();
+    button.addEventListener("click", (e) => {
+      cleanResult();
 
-        computerSelection = computerPlay();
-        playerSelection = playerPlay(e.target);
+      computerSelection = computerPlay();
+      playerSelection = playerPlay(e.target);
 
-        result = playRound(playerSelection, computerSelection);
-        outputResult(result);
-      })
-    )
+      result = playRound(playerSelection, computerSelection);
+      outputResult(result);
+      exitGameIfEnoughScore();
+    })
   );
 }
 
-function outputResult(result) {
-  // Apply win- and loss-specific classes to elements
-  // that were chosen by either player or computer
-  if (result["loser"]) {
-    result["loser"].classList.add("loss");
-    result["winner"].classList.add("win");
-  } else {
-    result["draw"].classList.add("draw");
+window.addEventListener("keydown", (e) => {
+  console.log(e.key);
+  if (e.key === "Enter") {
+    cleanResult();
   }
+});
+
+function outputResult(result) {
+  /* Apply win- and loss-specific classes to elements
+  that were chosen by either player or computer */
+
+  let applyClasses = function () {
+    if (result["loserElement"]) {
+      result["loserElement"].classList.add("loss");
+      result["winnerElement"].classList.add("win");
+    } else {
+      result["draw"].classList.add("draw");
+    }
+  };
+
+  let addScore = function () {
+    scoreCounter = document.getElementById("score");
+    scoreCounter.textContent = `${playerCount}:${computerCount}`;
+  };
+
+  applyClasses(result);
+  addScore();
 }
 
 function cleanResult() {
   resultField = document.querySelector(".result-bar__text");
   resultField.textContent = "RESULT: ";
 
-  Object.values(optionElementMap).forEach((element) => {
-    element.option.classList.remove("loss");
-    element.option.classList.remove("win");
-    element.option.classList.remove("draw");
+  const outcomeClasses = ["win", "loss", "draw"];
+  outcomeClasses.forEach((outcomeClass) => {
+    let outcomeClassElements = document.getElementsByClassName(outcomeClass);
+    Array.from(outcomeClassElements).forEach((element) =>
+      element.classList.remove(outcomeClass)
+    );
   });
+}
+
+function exitGameIfEnoughScore() {
+  if (playerCount === exitThreshold) {
+    alert("Player wins!");
+  } else if (computerCount === exitThreshold) {
+    alert("Computer wins!");
+  }
 }
 
 addButtonListeners();

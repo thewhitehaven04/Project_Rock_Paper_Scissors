@@ -36,7 +36,7 @@
 .controls__button__image {
   padding: 10px;
   border-radius: 10px;
-  transition: box-shadow 0.23s ease-in-out;
+  transition: box-shadow 0.15s ease-in-out;
 }
 
 .result-bar {
@@ -51,17 +51,18 @@
 }
 
 .win { 
-  box-shadow: 0px 0px 5px 2px lawngreen;
+  box-shadow: 0px 0px 5px 5px lawngreen;
 }
 
 .loss {
-  box-shadow: 0px 0px 5px 2px lightcoral;
+  box-shadow: 0px 0px 5px 5px lightcoral;
 }
 
 .draw { 
-  box-shadow: 0px 0px 5px 2px darkcyan;
+  box-shadow: 0px 0px 5px 5px darkcyan;
 }
 
 .text-hidden { 
   visibility: hidden;
 }
+
