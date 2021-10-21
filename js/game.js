@@ -72,7 +72,7 @@ function playRound(playerSelection, computerSelection) {
 
 function addButtonListeners() {
   // Sets up listeners that register player input
-  buttons = document.querySelectorAll(".controls__button");
+  buttons = document.querySelectorAll(".controls__button__image");
   buttons.forEach((button) =>
     button.addEventListener("click", (e) => {
       cleanResult();
@@ -109,7 +109,7 @@ function outputResult(result) {
 
   let addScore = function () {
     scoreCounter = document.getElementById("score");
-    scoreCounter.textContent = `PLAYER ${playerCount}:${computerCount} COMPUTER`;
+    scoreCounter.textContent = `Player ${playerCount}:${computerCount} Computer`;
   };
 
   applyClasses(result);

@@ -1,17 +1,18 @@
 :root {
   all: unset;
   font-family: "Dosis";
-  --font-color: #94A7B0; 
-  --default-background-color: #FAFAFA; 
-  background-color: #FAFAFA;
+  --font-color: #94a7b0;
+  --default-background-color: #fafafa;
   --border-radius-panels: 25px;
+  --accent-color: #00BCD4;
+  background-color: var(--default-background-color);
 }
 
 .title {
   background-color: #546e7a;
   border-radius: var(--border-radius-panels);
-  border-color: #E7E7E8;
-  border-style: solid ;
+  border-color: #e7e7e8;
+  border-style: solid;
   text-align: center;
   margin: 40px auto;
 }
@@ -33,20 +34,16 @@
 }
 
 .controls__button__image {
-  width: 200px;
+  width: 270px;
   height: auto;
+  padding: 10px;
+  border-radius: 4px;
+  transition: box-shadow 0.1s ease-in-out;
 }
 
 .controls__button__image:hover {
-  box-shadow: 0px 0px 5px 4px #E7E7E8;
+  box-shadow: 0px 0px 5px 2px #e7e7e8;
 }
-
-.controls__button__image {
-  padding: 10px;
-  border-radius: 10px;
-  transition: box-shadow 0.15s ease-in-out;
-}
-
 
 .result-bar {
   border-radius: var(--border-radius-panels);
@@ -58,19 +55,19 @@
   color: var(--font-color);
 }
 
-.win { 
-  box-shadow: 0px 0px 8px 3px #91b859;
+.win {
+  box-shadow: 0px 0px 3px 1px #91b859;
 }
 
 .loss {
-  box-shadow: 0px 0px 8px 3px #e53935;
+  box-shadow: 0px 0px 3px 1px #e53935;
 }
 
-.draw { 
-  box-shadow: 0px 0px 8px 3px #7c4dff;
+.draw {
+  box-shadow: 0px 0px 3px 1px #7c4dff;
 }
 
-.text-hidden { 
+.text-hidden {
   visibility: hidden;
 }
 

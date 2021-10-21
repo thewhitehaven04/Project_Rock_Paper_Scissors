@@ -18,37 +18,44 @@
     </header>
     <div class="main">
       <div class="controls">
+
         <div class="controls__button" type="submit">
-          <img
-            class="controls__button__image"
-            src="img/RPS/Rock_2.png"
-            alt="Rock"
+          <object
             id="rock"
-          />
+            alt="Rock"
+            type="image/svg+xml"
+            class="controls__button__image"
+            data="img/RPS/Rock.svg"
+          ></object>
         </div>
 
         <div class="controls__button" type="submit">
-          <img
-            class="controls__button__image"
-            src="img/RPS/Paper_2.png"
-            alt="Paper"
+          <object
             id="paper"
-          />
-        </div>
-        <div class="controls__button" type="submit">
-          <img
+            alt="Paper"
+            type="image/svg+xml"
             class="controls__button__image"
-            src="img/RPS/Scissors_2.png"
-            alt="Scissors"
+            data="img/RPS/Paper.svg"
+          ></object>
+        </div>
+
+        <div class="controls__button" type="submit">
+          <object
             id="scissors"
-          />
+            alt="Scissors"
+            type="image/svg+xml"
+            class="controls__button__image"
+            data="img/RPS/Scissors.svg"
+          ></object>
         </div>
       </div>
       <footer>
         <div class="result-bar">
           <span class="result-bar__text"> Score: </span>
           <div class="score-counter">
-            <span class="score-counter__res" id="score">0:0</span>
+            <span class="score-counter__res" id="score"
+              >Player 0:0 Computer</span
+            >
           </div>
         </div>
       </footer>
