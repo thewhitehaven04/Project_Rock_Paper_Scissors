@@ -4,7 +4,7 @@
   --font-color: #94a7b0;
   --default-background-color: #fafafa;
   --border-radius-panels: 25px;
-  --accent-color: #00BCD4;
+  --accent-color: #00bcd4;
   background-color: var(--default-background-color);
 }
 
@@ -38,11 +38,12 @@
   height: auto;
   padding: 10px;
   border-radius: 4px;
-  transition: box-shadow 0.1s ease-in-out;
+  transition: box-shadow 0.20s ease-in-out;
+  pointer-events: none;
 }
 
 .controls__button__image:hover {
-  box-shadow: 0px 0px 5px 2px #e7e7e8;
+  box-shadow: 0px 0px 2px 2px #1f1f99;
 }
 
 .result-bar {
