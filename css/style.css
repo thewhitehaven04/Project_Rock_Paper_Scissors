@@ -1,71 +1,86 @@
 :root {
   all: unset;
-  font-family: "Dosis";
-  --font-color: #94a7b0;
-  --default-background-color: #fafafa;
-  --border-radius-panels: 25px;
-  --accent-color: #00bcd4;
+  font-family: "Caveat Brush";
+  --default-background-color: #cfdfff;
+  --panel-background-color: #3498db;
+  --border-radius-panels: 15px;
+  --border-color: #000000;
+  --outline-color: #ffffff;
   background-color: var(--default-background-color);
+  --font-color: #ffffff;
+}
+
+.panel-styling {
+  /* Sets up the panel styling apart from the fonts */
+  background-color: var(--panel-background-color);
+  margin: 30px 15px;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 10px;
+  border-color: var(--border-color);
+  outline-style: solid;
+  outline-width: 10px;
+  outline-color: var(--outline-color);
+}
+
+.panel-font-styling {
+  /* Sets up panel font styling */
+  color: var(--font-color);
+  font-style: italic;
+  -webkit-text-stroke: 4px black;
 }
 
 .title {
-  background-color: #546e7a;
-  border-radius: var(--border-radius-panels);
-  border-color: #e7e7e8;
-  border-style: solid;
   text-align: center;
-  margin: 40px auto;
 }
 
-.title__span {
-  font-weight: 700;
-  font-size: 48pt;
-  color: var(--font-color);
+.title__text {
+  font-weight: 900;
+  font-size: 64pt;
 }
 
 .controls {
   display: flex;
   flex: row nowrap;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  margin: 35px auto;
 }
 
 .controls__button {
   border: none;
+  transition-timing-function: ease-in-out;
+  transition-property: transform;
+  transition-duration: 0.31s;
+}
+
+.controls__button:hover {
+  transform: translateY(-25px);
 }
 
 .controls__button__image {
-  width: 270px;
+  width: 200px;
   height: auto;
-  padding: 10px;
   border-radius: 4px;
-  transition: box-shadow 0.20s ease-in-out;
   pointer-events: none;
-}
-
-.controls__button__image:hover {
-  box-shadow: 0px 0px 2px 2px #1f1f99;
+  margin: 3px;
 }
 
 .result-bar {
-  border-radius: var(--border-radius-panels);
-  margin: 40px auto;
   text-align: center;
-  background-color: #546e7a;
-  font-weight: 700;
-  font-size: 48pt;
-  color: var(--font-color);
+  font-weight: 900;
+  font-size: 64pt;
 }
 
 .win {
-  box-shadow: 0px 0px 3px 1px #91b859;
+  stroke: rgba(0, 255, 0, 0.25);
 }
 
 .loss {
-  box-shadow: 0px 0px 3px 1px #e53935;
+  stroke: rgba(255, 0, 0, 0.25);
 }
 
 .draw {
-  box-shadow: 0px 0px 3px 1px #7c4dff;
+  stroke: rgba(0, 112, 120, 0.2);
 }
 
 .text-hidden {
@@ -74,4 +89,21 @@
 
 .score__counter {
   margin: 50px auto 50px;
+}
+
+.endgame-message-dialog {
+  /* transform: translateY(-999px); */
+  transition-property: transform;
+  transition-duration: 1s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  display: flex;
+  flex: column nowrap;
+}
+
+.endgame-message-dialog__text {
+  display: block;
+}
+
+.endgame-message-dialog__visible {
+  transform: translateY(200px);
 }

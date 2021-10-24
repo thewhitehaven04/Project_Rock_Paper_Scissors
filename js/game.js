@@ -1,16 +1,19 @@
 const rock = {
   name: "rock",
   elementId: document.getElementById("rock"),
+  elementSvg: document.getElementById("rock").firstElementChild,
   winsAgainst: "scissors",
 };
 const paper = {
   name: "paper",
   elementId: document.getElementById("paper"),
+  elementSvg: document.getElementById("paper").firstElementChild,
   winsAgainst: "rock",
 };
 const scissors = {
   name: "scissors",
   elementId: document.getElementById("scissors"),
+  elementSvg: document.getElementById("scissors").firstElementChild,
   winsAgainst: "paper",
 };
 
@@ -42,16 +45,16 @@ function outputResult(result, playerScore, computerScore) {
 
   let highlightWinner = function (result) {
     if (result["loserElement"]) {
-      optionElementMap[result.loserElement].elementId.classList.add("loss");
-      optionElementMap[result.winnerElement].elementId.classList.add("win");
+      optionElementMap[result.loserElement].elementSvg.classList.add("loss");
+      optionElementMap[result.winnerElement].elementSvg.classList.add("win");
     } else {
-      optionElementMap[result.draw].elementId.classList.add("draw");
+      optionElementMap[result.draw].elementSvg.classList.add("draw");
     }
   };
 
   let addScore = function (playerScore, computerScore) {
     scoreCounter = document.getElementById("score");
-    scoreCounter.textContent = `Player ${playerScore}:${computerScore} Computer`;
+    scoreCounter.textContent = `Player ${playerScore} : ${computerScore} Computer`;
   };
 
   highlightWinner(result);

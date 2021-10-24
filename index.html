@@ -6,14 +6,14 @@
     <link href="css/style.css" rel="stylesheet" />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Dosis"
+      href="https://fonts.googleapis.com/css?family=Caveat+Brush"
     />
     <script src="js/game.js" defer></script>
   </head>
   <body>
     <header>
-      <div class="title">
-        <span class="title__span"> ROCK // PAPER // SCISSORS </span>
+      <div class="title panel-styling panel-font-styling">
+        <span class="title__text"> ROCK // PAPER // SCISSORS </span>
       </div>
     </header>
     <div class="main">
@@ -23,7 +23,7 @@
             alt="Rock"
             type="image/svg+xml"
             class="controls__button__image"
-            data="img/RPS/Rock.svg"
+            data="img/Rock.svg"
           ></object>
         </div>
 
@@ -32,7 +32,7 @@
             alt="Paper"
             type="image/svg+xml"
             class="controls__button__image"
-            data="img/RPS/Paper.svg"
+            data="img/Paper.svg"
           ></object>
         </div>
 
@@ -41,12 +41,12 @@
             alt="Scissors"
             type="image/svg+xml"
             class="controls__button__image"
-            data="img/RPS/Scissors.svg"
+            data="img/Scissors.svg"
           ></object>
         </div>
       </div>
       <footer>
-        <div class="result-bar">
+        <div class="result-bar panel-styling panel-font-styling">
           <span class="result-bar__text">Score:</span>
           <div class="score-counter">
             <span class="score-counter__res" id="score"
@@ -55,6 +55,17 @@
           </div>
         </div>
       </footer>
+      <div class="endgame-message-dialog panel-styling panel-font-styling">
+        <span class="endgame-message-dialog__text">Someone won!</span>
+        <div>
+          <div class="endgame-message-dialog__button" id="button-continue">
+            Yeah, I want to continue!
+          </div>
+          <div class="endgame-message-dialog__button" id="button-stop">
+            Nah, I'm done!
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
