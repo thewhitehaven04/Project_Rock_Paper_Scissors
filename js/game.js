@@ -81,7 +81,7 @@ function outputResult(result, playerScore, computerScore) {
     if (result.winnerElement) {
       roundText.textContent = `${result.winnerElement} beats ${result.loserElement}!`;
     } else {
-      roundText.textContent = `It's a draw! Both the computer and you chose ${result.draw}`;
+      roundText.textContent = `It's a draw! Both players chose ${result.draw}`;
     }
   };
   highlightWinner(result);

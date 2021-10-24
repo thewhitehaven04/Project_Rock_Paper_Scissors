@@ -125,7 +125,7 @@
 /* Footer setup */
 
 .endgame-message-dialog {
-  transform: translateY(999px);
+  transform: translateY(-999px);
   transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 
