@@ -10,6 +10,7 @@
     />
     <script src="js/game.js" defer></script>
   </head>
+
   <body>
     <header>
       <div class="title panel-styling panel-font-styling">
@@ -45,27 +46,35 @@
           ></object>
         </div>
       </div>
-      <footer>
-        <div class="result-bar panel-styling panel-font-styling">
-          <span class="result-bar__text">Score:</span>
-          <div class="score-counter">
-            <span class="score-counter__res" id="score"
-              >Player 0:0 Computer</span
-            >
-          </div>
+    </div>
+    <div class="result-bar">
+      <div class="result-bar__score panel-styling panel-font-styling">
+        <div class="score-counter">
+          <span class="score-counter__res" id="score">Player 0:0 Computer</span>
         </div>
-      </footer>
-      <div class="endgame-message-dialog panel-styling panel-font-styling">
-        <span class="endgame-message-dialog__text">Someone won!</span>
-        <div>
-          <div class="endgame-message-dialog__button" id="button-continue">
-            Yeah, I want to continue!
-          </div>
-          <div class="endgame-message-dialog__button" id="button-stop">
-            Nah, I'm done!
+      </div>
+      <div class="result-bar__round panel-styling panel-font-styling">
+          <span class="result-bar__round__text" id="round-text">Good luck!</span>
+      </div>
+    </div>
+    <footer>
+      <div
+        class="endgame-message-dialog panel-styling panel-font-styling"
+        id="endgame-message-dialog"
+      >
+        <div
+          class="endgame-message-dialog__text"
+          id="endgame-message-dialog__text"
+        ></div>
+        <div class="endgame-buttons">
+          <div
+            class="endgame-message-dialog__button panel-styling"
+            id="button-continue"
+          >
+            Once more!
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   </body>
 </html>

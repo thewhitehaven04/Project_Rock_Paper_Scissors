@@ -3,7 +3,7 @@
   font-family: "Caveat Brush";
   --default-background-color: #cfdfff;
   --panel-background-color: #3498db;
-  --border-radius-panels: 15px;
+  --border-radius-panels: 40px;
   --border-color: #000000;
   --outline-color: #ffffff;
   background-color: var(--default-background-color);
@@ -15,11 +15,11 @@
   background-color: var(--panel-background-color);
   margin: 30px 15px;
   border-style: solid;
-  border-width: 5px;
-  border-radius: 10px;
+  border-width: 4px;
+  border-radius: var(--border-radius-panels);
   border-color: var(--border-color);
   outline-style: solid;
-  outline-width: 10px;
+  outline-width: 8px;
   outline-color: var(--outline-color);
 }
 
@@ -43,7 +43,7 @@
   display: flex;
   flex: row nowrap;
   justify-content: space-around;
-  margin: 35px auto;
+  margin: 30px auto;
 }
 
 .controls__button {
@@ -51,6 +51,7 @@
   transition-timing-function: ease-in-out;
   transition-property: transform;
   transition-duration: 0.31s;
+  margin: 20px auto;
 }
 
 .controls__button:hover {
@@ -58,18 +59,48 @@
 }
 
 .controls__button__image {
-  width: 200px;
+  width: 300px;
   height: auto;
-  border-radius: 4px;
+  border-radius: 50%;
   pointer-events: none;
   margin: 3px;
+  box-shadow: 0px 0px 5px 2px #cfffff;
 }
 
 .result-bar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  flex-shrink: 1;
   text-align: center;
   font-weight: 900;
   font-size: 64pt;
+  gap: 10px;
 }
+
+.result-bar__score {
+  display: flex;
+  flex-flow: column wrap;
+  text-align: left;
+  flex-basis: 40%;
+  flex-shrink: 1;
+}
+
+.result-bar__score__text,
+.score-counter {
+  padding-left: 0.3em;
+}
+
+.result-bar__round {
+  flex-basis: 55%;
+  flex-shrink: 1;
+}
+
+#round-text {
+  font-size: 48pt;
+}
+
+/* Game outcome-specific classes applied when either score hits the threshold */
 
 .win {
   stroke: rgba(0, 255, 0, 0.25);
@@ -91,19 +122,58 @@
   margin: 50px auto 50px;
 }
 
+/* Footer setup */
+
 .endgame-message-dialog {
-  /* transform: translateY(-999px); */
-  transition-property: transform;
-  transition-duration: 1s;
+  transform: translateY(999px);
+  transition-duration: 0.3s;
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
   display: flex;
-  flex: column nowrap;
+  flex-flow: column wrap;
+  align-items: center;
+
+  padding: 15px 15px;
+
+  font-style: normal;
 }
 
 .endgame-message-dialog__text {
-  display: block;
+  font-weight: normal;
+  font-size: 56pt;
 }
 
 .endgame-message-dialog__visible {
-  transform: translateY(200px);
+  transform: translateY(0px);
+}
+
+/* Footer button setup */
+
+.endgame-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.endgame-message-dialog__button {
+  all: unset;
+
+  width: 500px;
+  margin: 0px 10px;
+  height: 1.2em;
+
+  background-color: #f1baf5;
+  border-radius: 12px;
+  border: solid 3px white;
+  box-shadow: 0px 3px 3px 1px black;
+
+  font-size: 48pt;
+  text-align: center;
+
+  transition-timing-function: ease-in-out;
+  transition-property: transform;
+  transition-duration: 0.12s;
+}
+
+.endgame-message-dialog__button:hover {
+  transform: translateY(-3px);
 }
