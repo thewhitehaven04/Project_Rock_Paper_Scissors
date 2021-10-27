@@ -16,66 +16,83 @@ const scissors = {
   elementSvg: document.getElementById("scissors").firstElementChild,
   winsAgainst: "paper",
 };
+const exitThreshold = 5;
 
-let playerScore = 0;
-let computerScore = 0;
+function addOptionListener(optionListener) {
+  // The function adds rock, paper, scissors controls listeners that control the game flow
+  const controlButtons = document.querySelectorAll(".controls__button");
+  controlButtons.forEach((controlButton) => {
+    controlButton.addEventListener("click", optionListener, {
+      capture: true,
+    });
+  });
+}
 
-const optionElementMap = { rock, paper, scissors };
-
-const exitThreshold = 3;
-
-window.addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    cleanResult();
-  }
-});
-
-const restartButton = document.getElementById("button-continue");
-restartButton.addEventListener("click", () => {
-  // Set the score to 0:0;
-  scoreCounter = document.getElementById("score");
-  scoreCounter.textContent = `Player 0 : 0 Computer`;
-
-  // Hide back the endgame dialog
-  const endgameDialog = document.getElementById("endgame-message-dialog");
-  endgameDialog.classList.remove("endgame-message-dialog__visible");
-
-  // Start a new game
-  newGame(exitThreshold);
-});
+function removeOptionListener(optionListener) {
+  const controlButtons = document.querySelectorAll(".controls__button");
+  controlButtons.forEach((controlButton) =>
+    controlButton.removeEventListener("click", optionListener)
+  );
+}
 
 function playerPlay(target) {
   // Return the object with links to the respective option image, its svg and the option it wins against
-  return optionElementMap[target.id];
+  return { rock, paper, scissors }[target.id];
 }
 
 function computerPlay() {
   // This function returns the computer's chosen option
-  const options = Object.keys(optionElementMap);
+  const options = [rock, paper, scissors];
   let optLength = options.length;
   randomOption = Math.floor(optLength * Math.random());
-  return optionElementMap[options[randomOption]];
+  return options[randomOption];
+}
+
+function playRound(gameState) {
+  // Returns the outcome of a round.
+  const playerSelection = gameState.playerSelection;
+  const computerSelection = gameState.computerSelection;
+
+  let playerScore = gameState.playerScore;
+  let computerScore = gameState.computerScore;
+
+  let outcome = { draw: false, winner: undefined, playerScore, computerScore };
+
+  if (playerSelection.winsAgainst === computerSelection.name) {
+    outcome["winnerElement"] = playerSelection.name;
+    outcome["loserElement"] = computerSelection.name;
+    outcome["winner"] = "player";
+    outcome["playerScore"] = ++gameState.playerScore;
+  } else if (computerSelection.winsAgainst === playerSelection.name) {
+    outcome["winnerElement"] = computerSelection.name;
+    outcome["loserElement"] = playerSelection.name;
+    outcome["winner"] = "computer";
+    outcome["computerScore"] = ++gameState.computerScore;
+  } else outcome["draw"] = computerSelection.name;
+
+  return outcome;
 }
 
 function outputResult(result, playerScore, computerScore) {
   /* Apply win- and loss-specific classes to elements
   that were chosen by either player or computer */
+  const options = { rock, paper, scissors };
 
-  let highlightWinner = function (result) {
+  const highlightWinner = function (result) {
     if (result["loserElement"]) {
-      optionElementMap[result.loserElement].elementSvg.classList.add("loss");
-      optionElementMap[result.winnerElement].elementSvg.classList.add("win");
+      options[result.loserElement].elementSvg.classList.add("loss");
+      options[result.winnerElement].elementSvg.classList.add("win");
     } else {
-      optionElementMap[result.draw].elementSvg.classList.add("draw");
+      options[result.draw].elementSvg.classList.add("draw");
     }
   };
 
-  let addScore = function (playerScore, computerScore) {
+  const addScore = function (playerScore, computerScore) {
     scoreCounter = document.getElementById("score");
     scoreCounter.textContent = `Player ${playerScore} : ${computerScore} Computer`;
   };
 
-  let showOutcome = function (result) {
+  const showOutcome = function (result) {
     let roundText = document.getElementById("round-text");
     console.dir(result);
     if (result.winnerElement) {
@@ -117,50 +134,55 @@ function exitGameIfEnoughScore(exitThreshold, playerScore, computerScore) {
   }
 }
 
-function controlButtonListener(event) {
-  // Clean option highlights before each new round
-  cleanResult();
-
-  let playerSelection = playerPlay(event.target);
-  let computerSelection = computerPlay();
-  let outcome = playRound(playerSelection, computerSelection);
-
-  // Set highlights with respect to the selected playerSelection and computerSelection
-  outputResult(outcome, playerScore, computerScore);
-  exitGameIfEnoughScore(exitThreshold, playerScore, computerScore);
-  event.stopPropagation();
-}
-
-function playRound(playerSelection, computerSelection) {
-  // Returns the outcome of a round.
-  let outcome = { draw: false, winner: undefined };
-
-  if (playerSelection.winsAgainst === computerSelection.name) {
-    outcome["winnerElement"] = playerSelection.name;
-    outcome["loserElement"] = computerSelection.name;
-    outcome["winner"] = "player";
-    playerScore++;
-  } else if (computerSelection.winsAgainst === playerSelection.name) {
-    outcome["winnerElement"] = computerSelection.name;
-    outcome["loserElement"] = playerSelection.name;
-    outcome["winner"] = "computer";
-    computerScore++;
-  } else outcome["draw"] = computerSelection.name;
-
-  return outcome;
-}
-
 function newGame(exitThreshold) {
   // Initialize player and computer score counters
+  let playerScore = 0;
+  let computerScore = 0;
+
+  const optionListener = (event) => {
+    // Clean option highlights before each new round
+    cleanResult();
+
+    const playerSelection = playerPlay(event.target);
+    const computerSelection = computerPlay();
+
+    const gameState = {
+      playerSelection,
+      playerScore,
+      computerSelection,
+      computerScore,
+    };
+
+    const outcome = playRound(gameState);
+    playerScore = outcome.playerScore;
+    computerScore = outcome.computerScore;
+
+    // Set highlights with respect to selected playerSelection and computerSelection
+    outputResult(outcome, playerScore, computerScore);
+    exitGameIfEnoughScore(exitThreshold, playerScore, computerScore);
+  };
+
+  addOptionListener(optionListener);
+  removeOptionListener(optionListener);
+
+  // nullify the score
   playerScore = 0;
   computerScore = 0;
-
-  let controlButtons = document.querySelectorAll(".controls__button");
-  controlButtons.forEach((controlButton) => {
-    controlButton.addEventListener("click", controlButtonListener, {
-      capture: true,
-    });
-  });
 }
+
+// the game restart function is defined below
+const restartButton = document.getElementById("button-continue");
+restartButton.addEventListener("click", () => {
+  // Set the score to 0:0;
+  scoreCounter = document.getElementById("score");
+  scoreCounter.textContent = `Player 0 : 0 Computer`;
+
+  // Hide back the endgame dialog
+  const endgameDialog = document.getElementById("endgame-message-dialog");
+  endgameDialog.classList.remove("endgame-message-dialog__visible");
+
+  // Start a new game
+  newGame(5);
+});
 
 newGame(exitThreshold);

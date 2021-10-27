@@ -82,7 +82,7 @@
   display: flex;
   flex-flow: column wrap;
   text-align: left;
-  flex-basis: 40%;
+  flex-basis: 38%;
   flex-shrink: 1;
 }
 
@@ -92,7 +92,7 @@
 }
 
 .result-bar__round {
-  flex-basis: 55%;
+  flex-basis: 52%;
   flex-shrink: 1;
 }
 
